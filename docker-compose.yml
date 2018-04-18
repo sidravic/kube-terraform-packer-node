@@ -1,0 +1,13 @@
+# Compose file where the node app connects to the a redis running on the host
+# Run using docker-compose up
+version: "2.0"
+services:
+  chomeshvan:
+    image: "chomeshvan:latest"
+    build: .
+    env_file: development.env
+    ports:
+      - 8000:8000
+    extra_hosts:
+      - "dockerhost:10.10.10.10"    
+  

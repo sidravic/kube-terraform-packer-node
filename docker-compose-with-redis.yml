@@ -1,0 +1,20 @@
+# Compose file where the node app connects to the a redis running on the host
+# Run using docker-compose -f docker-compose-with-redis.yml up
+version: "2.0"
+services:
+  chomeshvan:
+    image: "chomeshvan:latest"
+    build: .
+    env_file: development-with-redis-container.env
+    ports:
+      - 8000:8000
+    networks:
+      - chomeshvan_redis    
+  redis:
+    image: "redis:latest"
+    container_name: redis
+    networks:
+      - chomeshvan_redis
+networks:
+  chomeshvan_redis:
+    driver: bridge
