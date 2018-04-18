@@ -67,3 +67,9 @@ docker run -it --network chomeshvan_redis \
            chomeshvan:latest /bin/bash
 
 #Now ping redis will woork
+
+# Check logs
+docker logs redis
+docker logs chomeshvan
+
+docker-compose logs

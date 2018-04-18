@@ -7,7 +7,7 @@ services:
     build: .
     env_file: development-with-redis-container.env
     ports:
-      - 8000:8000
+      - "8000" #8000;8000 will specify host and container port but we're allow docker to determine exposed port on the host
     networks:
       - chomeshvan_redis    
   redis:
@@ -18,3 +18,12 @@ services:
 networks:
   chomeshvan_redis:
     driver: bridge
+
+#docker-compose  -f docker-compose-with-redis.yml up -d    
+#docker-compose  -f docker-compose-with-redis.yml scale chomeshvan=3
+#docker ps
+# CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                     NAMES
+# 57be6afb2a2d        chomeshvan:latest   "node app.js"            8 seconds ago        Up 6 seconds        0.0.0.0:32771->8000/tcp   chomeshvan_chomeshvan_3
+# 2eec6a010835        chomeshvan:latest   "node app.js"            8 seconds ago        Up 5 seconds        0.0.0.0:32770->8000/tcp   chomeshvan_chomeshvan_2
+# 2bdbd1634799        chomeshvan:latest   "node app.js"            About a minute ago   Up 58 seconds       0.0.0.0:32769->8000/tcp   chomeshvan_chomeshvan_1
+# 31946a6ef405        redis:latest        "docker-entrypoint..."   About a minute ago   Up 58 seconds       6379/tcp                  redis
