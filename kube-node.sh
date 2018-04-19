@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export MASTER_IP=159.89.167.107
-
 apt-get update && apt-get upgrade -y
 
 # adds google cloud platform key. Allows fetching stuff from googlecloudplatform
@@ -42,24 +40,4 @@ apt-get install -y docker.io
 
 apt-get install -y kubelet kubeadm kubectl kubernetes-cni
 
-# This advertises the master IP address which is a public IP
-# The --pod-network-cidr
-#      --pod-network-cidr string      Specify range of IP addresses for the pod network. If set, the control plane will automatically allocate CIDRs for every node.
-kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address $MASTER_IP
-
-#Response
-mkdir -p $HOME/.kube
-  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  sudo chown $(id -u):$(id -g) $HOME/.kube/config
 kubeadm join 159.89.167.107:6443 --token qok08g.qgdsz9gcdb6l5tda --discovery-token-ca-cert-hash sha256:190eccb58133295559571c0ff6b86dc5b6370d1df921968abb027fd1e07675a7
-
-# Install flannel for networking overlay
-curl -sSL "https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml" | kubectl --namespace=kube-system create -f -
-
-#Install a dashboard
-#kubectl create -f https://rawgit.com/kubernetes/dashboard/master/src/deploy/kubernetes-dashboard.yaml --namespace=kube-system 
-#The line above doesn't work
-
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
-
-kubectl get nodes
