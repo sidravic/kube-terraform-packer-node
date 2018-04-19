@@ -63,3 +63,16 @@ curl -sSL "https://raw.githubusercontent.com/coreos/flannel/master/Documentation
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
 
 kubectl get nodes
+
+kubectl cluster-info
+
+kubectl get cs
+
+### Accessing your kubernetes cluster locally
+# scp root@master_node_ip:/etc/kubernetes/admin.conf .
+# cp ./admin.conf ~/.kube/config
+
+# kubectl get nodes
+# NAME           STATUS    ROLES     AGE       VERSION
+# kube-master    Ready     master    1h        v1.10.1
+# kube-node-01   Ready     <none>    28m       v1.10.1
