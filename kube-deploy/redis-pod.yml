@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis
+  labels: 
+    name: redis
+    app: chomeshvan-redis
+spec:
+  containers:
+    - image: redis:latest
+      name: redis
+      ports:
+        - name: redis
+          containerPort: 6379
+          hostPort: 6379
+      volumeMounts:
+        - name: redis-storage
+          mountPath: /data/redis
+  volumes:
+    - name: redis-storage
+      hostPath: 
+        path: /data/redis

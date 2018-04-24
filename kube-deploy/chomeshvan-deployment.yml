@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      name: web      
+  template:
+    metadata:
+      labels:
+        name: web
+    spec:
+      containers:
+        - name: chomeshvan-node
+          image: supersid/chomeshvan
+          env:
+            - name: REDIS_URL
+              # value: redis://10.111.67.3:6379
+              value: redis://redis-service:6379
+          ports: 
+            - containerPort: 8000
+      imagePullSecrets:
+        - name: myregistrykey

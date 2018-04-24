@@ -19,6 +19,9 @@ networks:
   chomeshvan_redis:
     driver: bridge
 
+# Creating the network bridge
+#docker run --network chomeshvan_redis --name redis --hostname redis -p 6380:6379 redis:latest
+
 #docker-compose  -f docker-compose-with-redis.yml up -d    
 #docker-compose  -f docker-compose-with-redis.yml scale chomeshvan=3
 #docker ps

@@ -3,7 +3,7 @@ const redis = require('./lib/redis_connection.js')
 
 const server=Hapi.server({
     host: '0.0.0.0',
-    port: process.env.PORT
+    port: (process.env.PORT || 8000 )
 });
 
 // Add the route
