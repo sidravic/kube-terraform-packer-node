@@ -1,0 +1,27 @@
+{
+    "variables": {
+        "do_api_token": "{{env `DO_API_TOKEN`}}"
+    },
+    "builders":[{
+        "type":"digitalocean",
+        "api_token": "{{user `do_api_token`}}",
+        "image": "ubuntu-16-04-x64",
+        "region": "sgp1",
+        "size": "s-1vcpu-2gb",
+        "ssh_username":"root"
+    }],
+    "provisioners":[{
+        "type":"shell",
+        "inline":[
+            "sleep 30",
+            "sudo apt-get update"
+        ]},
+        {
+            "type":"shell",
+            "script":"kube-master.sh",
+            "pause_before": "2s"
+        }
+
+    ]
+
+}
