@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Starting user data execution"
+cat /tmp/id_rsa.pub >> /root/.ssh/authorized_keys
 
 IP_ADDRESS=$(ifconfig eth0 | grep 'inet addr'| cut -d: -f2 | awk '{print $1}')
 export MASTER_IP=$IP_ADDRESS
