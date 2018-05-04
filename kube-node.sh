@@ -40,4 +40,4 @@ apt-get install -y docker.io
 
 apt-get install -y kubelet kubeadm kubectl kubernetes-cni
 
-kubeadm join 159.89.167.107:6443 --token qok08g.qgdsz9gcdb6l5tda --discovery-token-ca-cert-hash sha256:190eccb58133295559571c0ff6b86dc5b6370d1df921968abb027fd1e07675a7
+kubeadm join master_ip:6443 --token qok08g.qgdsz9asdasdsdgcdb6l5tda --discovery-token-ca-cert-hash sha256:190ecasdasdascb58randomTokenStringc0ff6b86dc5b6370d1df921968asdasdabb027fd1e07675a7
