@@ -7,3 +7,7 @@ variable "do_region" {
 variable "private_key_path" {
   default = "/Users/sidravichandran/.ssh/id_rsa"
 }
+
+variable "worker_count" {
+  default = 2
+}

@@ -16,11 +16,11 @@ resource "digitalocean_droplet" "kube-master" {
   }
 
   /*
-                                                              Copy the ssh file created on the local machine upto the master node
-                                                              The master node will contain both the id_rsa and id_rsa.pub files.
+                                                                Copy the ssh file created on the local machine upto the master node
+                                                                The master node will contain both the id_rsa and id_rsa.pub files.
 
-                                                              The worker node will add the id_rsa.pub file to the node
-                                                            */
+                                                                The worker node will add the id_rsa.pub file to the node
+                                                              */
   provisioner "file" {
     source      = "/tmp/ssh/id_rsa.pub"
     destination = "/tmp/id_rsa.pub"
@@ -74,7 +74,7 @@ resource "digitalocean_droplet" "kube-master" {
 }
 
 resource "digitalocean_droplet" "kube-worker" {
-  count       = 2
+  count       = "${var.worker_count}"
   image       = "33914855"
   name        = "${format("kube-worker-%d", count.index)}"
   region      = "${var.do_region}"
