@@ -20,3 +20,9 @@ kubectl describe pod
 kubectl create -f kube-deploy/chomeshvan-deployments.yml
 #lets say you make a change to the version number and then.
 kubectl apply -f chomeshvan-deployment.yml
+
+#Delete a node from Kubernetes 
+kubectl drain <node name> --delete-local-data --force --ignore-daemonsets
+kubectl delete node <node name>
+
+
